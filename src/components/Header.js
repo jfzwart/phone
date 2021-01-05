@@ -4,7 +4,7 @@ import { Link } from 'react-router-dom';
 const Header = () => {
   return (
     <div className="ui secondary pointing menu">
-      <Link to="/" className="item">Inbox</Link>
+      <Link to="/" className="item">Cally</Link>
       <div className="right menu">
         <Link to="/" className="item">Inbox</Link>
         <Link to="/all" className="item">All Calls</Link>

@@ -1,5 +1,6 @@
 import React from 'react';
 import { connect} from 'react-redux';
+import { Link } from 'react-router-dom';
 import { fetchCalls, updateCall, resetCalls } from '../actions';
 
 // rewrite as a class based component to use lifecycle methods!
@@ -17,18 +18,18 @@ class Inbox extends React.Component {
           <div className="item" key={call.id}>
           <i className="large middle alligned icon phone" />
             <div className="content">
+            <Link to={`/call/${call.id}`} className="header">{call.from}</Link>
               <div className="description">
-                <h2>Form: {call.from}</h2>
-                <p>Type: {call.type}</p>
+                <p>Type: {call.direction}</p>
                 <p>Duration: {call.duration}</p>
               </div>
+                <button
+                  className="ui right floated primary button"
+                  onClick={()=>this.props.updateCall(call.id)}
+                  >
+                  Archive
+                </button>
             </div>
-            <button
-              className="ui button primary"
-              onClick={updateCall}
-              >
-              Archive
-            </button>
           </div>
           );
       }
@@ -38,10 +39,6 @@ class Inbox extends React.Component {
   render() {
     return (
     <div>
-          <button
-              className="ui button primary">
-              Reset Calls
-          </button>
           <div
           className="ui relaxed devided list">
           {this.renderList()}
